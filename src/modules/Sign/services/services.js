@@ -1,8 +1,9 @@
 import axios from '@/configs/axios';
 
-const login = async (email,password) => {
-    axios.post('/login',{email,password})
-}
+const login = async (username,password) => {
+    const response = await axios.post('/auth',{username,password})
+    return response
+}   
 
 export default{
     login

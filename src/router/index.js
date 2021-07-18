@@ -1,14 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import SignView from '@/modules/Sign/SignView.vue'
+import MainView from '@/modules/main/MainView.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
+    path: '/login',
+    name: 'login',
     component: SignView
+  },
+  {
+    path: '/',
+    name: 'home',
+    component: MainView
   },
 ]
 

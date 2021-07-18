@@ -1,7 +1,9 @@
-//import services from "@/modules/Sign/services.js";
+import services from "@/modules/Sign/services/services.js";
+
+
 export default {
-    async loginRequest({ commit }, { username, password }) {
-        console.log('login',username,password)
-        //await services.login(username,password)
+    async loginRequest({ commit }, { email, password }) {
+        const response = await services.login(email,password)
+        commit('setUser',response.data)
     }
 }

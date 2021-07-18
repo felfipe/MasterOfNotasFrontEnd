@@ -8,7 +8,7 @@
                   @
                 </v-icon>
             </v-text-field>
-            <v-text-field label="Username" v-model="user.username" :rules="rules">
+            <v-text-field v-if="!isSignIn" label="Username" v-model="user.username" :rules="rules">
                 <v-icon slot="prepend" color="grey" >
                   @
                 </v-icon>
@@ -23,7 +23,7 @@
                   mdi-key
                 </v-icon>
             </v-text-field>
-            <p v-if="error" class="login__error">Erro ao {{actionText}},tente novamente</p>
+            <p v-if="error" class="login__error">Erro ao {{actionText.toLowerCase()}}, tente novamente</p>
             <v-btn block depressed color="#00C853" class="white--text" type="submit">
                 {{actionText}}
             </v-btn>
@@ -70,11 +70,12 @@ import { mapActions } from 'vuex'
             navigate(to) {
                 this.$router.push({name:to})
             },
-            sign(){
+            async sign(){
                 try {
-                    this.isSignIn ? this.loginRequest(this.user) : this.signUpRequest(this.user) 
+                    if (this.isSignIn) await this.loginRequest(this.user)
+                    else this.signUpRequest(this.user)
+                    this.$router.push({name:'home'}) 
                 } catch (error) {
-                    console.log('iahyy')
                     this.error = `Erro ao ${this.actionText}`
                 }
             }
