@@ -10,10 +10,12 @@
                     mdi-menu
                 </v-icon>
             </span>
-            <img class="menu__logo" src="@/assets/logo.svg" alt="">
+            <div class="menu__logo__wrapper">
+                <img class="menu__logo" src="@/assets/logo.svg" alt="">
+            </div>
         </div>
         <div class="header__right">
-            <div class="header__user-type" v-if="user">{{user.tipoUsuario}}</div>
+            <div class="header__user-type" v-if="user">{{user.tipo}}</div>
             <v-icon
                     x-large
                     color="#1E5BD7"
@@ -25,15 +27,11 @@
     </header>
     <div class="content">
         <div class="content__sidebar" :class="{'is-expanded': isMenuExpanded}">
+            <p v-if="isMenuExpanded" style="width:100%;font-size:18px;color:white;margin-top:20px">Dashboard</p>
             <menu-item text="teste" icon="menu" active v-if="isMenuExpanded"></menu-item>
         </div>
         <div class="content__body">
-            <v-breadcrumbs
-                :items="items"
-                divider="-"
-            ></v-breadcrumbs>
-            <div class="content__main">
-            </div>
+            <router-view/>
         </div>
     </div>
     <footer><v-card
@@ -107,6 +105,8 @@ import MenuItem from './components/MenuItem.vue'
     justify-content: space-between;
     padding: 0px 20px;
     background-color: white;
+    max-width: 100vw;
+    overflow: hidden;
 }
 .header__right{
     height: 100%;
@@ -128,6 +128,9 @@ import MenuItem from './components/MenuItem.vue'
     cursor: pointer;
 }
 .menu__logo{
+    max-width: 100%;
+}
+.menu__logo__wrapper{
     max-width: 250px;
 }
 .content{
@@ -135,13 +138,12 @@ flex-grow:1;
 display: flex;
 }
 .content__sidebar{
-    width: 50px;
+    width: 0px;
     background: #1E5BD7;;
     transition: width .7s;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
 }
 .content__body{
     display: flex;
@@ -149,12 +151,8 @@ display: flex;
     height: 100%;
     width: 100%;
 }
-.content__main{
-    flex-grow: 1;
-    margin: 20px 40px 40px 40px;
-    background-color: white;
-}
 .is-expanded{
     width: 300px;
+    padding: 10px;
 }
 </style>

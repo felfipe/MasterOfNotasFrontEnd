@@ -14,3 +14,8 @@ export default {
   }),
 };
 </script>
+<style>
+html{
+  box-sizing: border-box;
+}
+</style>

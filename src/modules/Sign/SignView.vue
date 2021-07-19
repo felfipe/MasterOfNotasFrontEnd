@@ -23,6 +23,13 @@
                   mdi-key
                 </v-icon>
             </v-text-field>
+            <v-select
+                :items="items"
+                label="Tipo"
+                v-if="!isSignIn"
+                prepend-icon="mdi-map"
+                v-model="user.type"
+            ></v-select>
             <p v-if="error" class="login__error">Erro ao {{actionText.toLowerCase()}}, tente novamente</p>
             <v-btn block depressed color="#00C853" class="white--text" type="submit">
                 {{actionText}}
@@ -48,11 +55,13 @@ import { mapActions } from 'vuex'
                     username: '',
                     password: '',
                     confirmPassword: '',
+                    type: '',
                 },
                 rules: [
                     value => !!value || 'Obrigatório',
                     value => (value && value.length >= 6) || 'Mínimo de 3 caracteres',
                 ],
+                items: ['aluno', 'professor',],
                 isSignIn: true,
                 error: ''
             }
@@ -73,7 +82,12 @@ import { mapActions } from 'vuex'
             async sign(){
                 try {
                     if (this.isSignIn) await this.loginRequest(this.user)
-                    else this.signUpRequest(this.user)
+                    else {
+                        if(this.confirmPassword == this.password)
+                        this.signUpRequest(this.user)
+                        else
+                        this.error = 'Senha e Confirmação possuem valores diferentes'
+                    }
                     this.$router.push({name:'home'}) 
                 } catch (error) {
                     this.error = `Erro ao ${this.actionText}`
