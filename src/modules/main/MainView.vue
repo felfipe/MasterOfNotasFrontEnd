@@ -28,7 +28,7 @@
     <div class="content">
         <div class="content__sidebar" :class="{'is-expanded': isMenuExpanded}">
             <p v-if="isMenuExpanded" style="width:100%;font-size:18px;color:white;margin-top:20px">Dashboard</p>
-            <menu-item text="teste" icon="menu" active v-if="isMenuExpanded"></menu-item>
+            <menu-item @click.native="navigate({name:'disciplines'})" text="teste" icon="menu" active v-if="isMenuExpanded"></menu-item>
         </div>
         <div class="content__body">
             <router-view/>
@@ -83,6 +83,9 @@ import MenuItem from './components/MenuItem.vue'
     methods: {
         toggleMenu() {
             this.isMenuExpanded = !this.isMenuExpanded
+        },
+        navigate(to){
+            this.$router.push(to)
         }
     },
   }
@@ -150,6 +153,7 @@ display: flex;
     flex-direction: column;
     height: 100%;
     width: 100%;
+    padding: 20px 40px;
 }
 .is-expanded{
     width: 300px;
