@@ -5,6 +5,8 @@ import MainView from '@/modules/main/MainView.vue'
 import DisciplineList from '@/modules/ProfessorDisciplines/DisciplinesList.vue'
 import DisciplineAdd from '@/modules/ProfessorDisciplines/DisciplineAddEdit.vue'
 import DisciplineStudent from '@/modules/ProfessorDisciplines/DisciplineStudent.vue'
+import QuizView from '@/modules/Quiz/QuizView.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -34,6 +36,11 @@ const routes = [
         component: DisciplineStudent
       }
     ]
+  },
+  {
+    path: '/quiz',
+    name: 'quiz',
+    component: QuizView
   },
 ]
 
