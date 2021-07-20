@@ -13,7 +13,7 @@ instance.interceptors.request.use(function (config) {
 instance.interceptors.response.use(response => {
     return response;
  }, error => {
-   if (error.response.status === 401) {//Verificar se o erro é 401 msm
+   if (error.response.status === 403) {//Verificar se o erro é 401 msm
     localStorage.removeItem('token')
     router.push({name:'login'})
    }

@@ -3,27 +3,16 @@
         <p>{{isEditing? "Editar Disciplina" : "Cadastrar Disciplina"}}</p>
         <v-text-field label="Nome da disciplina" v-model="discipline.name" type="text">
         </v-text-field>
-        <div class="discipline__selects">
-            <v-select
-                :items="items"
-                label="Tipo"
-                prepend-icon="mdi-map"
-                v-model="discipline.semester"
-            ></v-select>
-            <v-select
-                :items="items"
-                label="Tipo"
-                prepend-icon="mdi-map"
-                v-model="discipline.year"
-            ></v-select>
-        </div>
-        <v-btn color="#00C853" class="white--text" block>
+        <v-text-field label="Sigla da disciplina" v-model="discipline.initials" type="text">
+        </v-text-field>
+        <v-btn color="#00C853" class="white--text" block @click="addDiscipline()">
                 Cadastrar
         </v-btn>
     </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
     export default {
         props: {
             isEditing: {
@@ -34,11 +23,24 @@
         data() {
             return {
                 discipline: {
+                    id:null,
                     name:'',
-                    year: '',
-                    semester: '',
+                    initials: '',
                 },
                 items: []
+            }
+        },
+        created () {
+            const id = this.$route.params.id
+            if (id) {
+                this.discipline = this.getDisciplineRequest()
+            }
+        },
+        methods: {
+            ...mapActions(['addDisciplineRequest']),
+            async addUpdateDiscipline(){
+                if (this.discipline.id) await this.updateDisciplineRequest(this.discipline)
+                else this.addDisciplineRequest(this.discipline)
             }
         },
     }

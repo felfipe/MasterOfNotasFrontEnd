@@ -31,6 +31,11 @@ const routes = [
         component: DisciplineAdd
       },
       {
+        path:'update-discipline/:id',
+        name: 'add-discipline',
+        component: DisciplineAdd
+      },
+      {
         path:'student-discipline',
         name: 'student-discipline',
         component: DisciplineStudent

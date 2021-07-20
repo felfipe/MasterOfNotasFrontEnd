@@ -8,8 +8,27 @@ const signUp = async (email, nome,senha,tipo) => {
     const response = await axios.post('/signUp', { email, nome, senha,tipo  })
     return response
 }
-
+const getDisciplines = async () => {
+    const response = await axios.get('/listarDisciplinas')
+    return response
+}
+const getDiscipline = async (id) => {
+    const response = await axios.get(`/listarDisciplinas/${id}`)
+    return response
+}
+const addDiscipline = async(nome,sigla) =>{
+    const response = await axios.post('/criarDisciplina',{nome,sigla})
+    return response
+}
+const updateDiscipline = async(id,nome,sigla) => {
+    const response = await axios.post('/atualizarDisciplina',{id,nome,sigla})
+    return response
+}
 export default {
     login,
-    signUp
+    signUp,
+    getDisciplines,
+    getDiscipline,
+    addDiscipline,
+    updateDiscipline
 }
