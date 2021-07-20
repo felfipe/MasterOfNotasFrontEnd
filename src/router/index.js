@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import SignView from '@/modules/Sign/SignView.vue'
 import MainView from '@/modules/main/MainView.vue'
-import QuizView from '@/modules/quiz/QuizView.vue'
+import QuizView from '@/modules/Quiz/QuizView.vue'
 
 Vue.use(VueRouter)
 
