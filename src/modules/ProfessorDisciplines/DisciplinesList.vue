@@ -1,14 +1,14 @@
 <template>
     <div>
         <div class="discipline__add">
-            <v-btn block>
+            <v-btn block color="#00C853" class="white--text" @click="navigate({name:'add-discipline'})">
                 Adicionar Disciplina
             </v-btn>
         </div>
         <div>
             <v-data-table
                 :headers="headers"
-                :items="desserts"
+                :items="disciplines || []"
                 class="elevation-1"
             >
                 <template v-slot:item.actions="{ item }">
@@ -42,31 +42,35 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
     export default {
     data () {
       return {
         headers: [
-          { text: 'Codigo', value: 'id' },
-          { text: 'Nome Da Disciplina', value: 'name' },
-          { text: 'Semestre/ano', value: 'semesterYear' },
+          { text: 'Sigla', value: 'sigla' },
+          { text: 'Nome Da Disciplina', value: 'nome' },
           { text: 'Actions', value: 'actions' },
         ],
         desserts: [
           {
-            id: 159,
-            name: 'Frozen Yogurt',
-            semesterYear: '2/2020',
-            actions: '1%',
+            sigla: 159,
+            nome: 'Frozen Yogurt',
+            actions: '',
           },
         ],
       }
     },
+    computed: {
+      ...mapState(['disciplines'])
+    },
+    created () {
+      this.getDisciplinesRequest();
+    },
     methods: {
-      getColor (calories) {
-        if (calories > 400) return 'red'
-        else if (calories > 200) return 'orange'
-        else return 'green'
-      },
+      ...mapActions(['getDisciplinesRequest']),
+      navigate(to){
+        this.$router.push(to)  
+      }
     },
     }
 </script>
