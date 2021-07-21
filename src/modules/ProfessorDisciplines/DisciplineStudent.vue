@@ -64,6 +64,7 @@ import { mapActions, mapState } from 'vuex'
       },
       async addStudentToDiscipline(){
         await this.addStudentToDisciplineRequest({disciplineID: +this.$route.params.id, studentsID: this.studentsToAdd})
+        this.$router.push({name:'disciplines'})
       }
     },
     }

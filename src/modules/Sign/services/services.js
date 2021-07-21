@@ -30,8 +30,8 @@ const getStudents = async() => {
       }})
     return response
 }
-const addStudentToDiscipline = async(disciplinaid,alunosid) => {
-    const response = await axios.post('/setAlunosDisciplina', {disciplinaid,alunosid})
+const addStudentToDiscipline = async(disciplinaId,alunosId) => {
+    const response = await axios.post('/setAlunosDisciplina', {disciplinaId,alunosId})
     return response
 }
 const removeDiscipline = async(idDisciplina) => {

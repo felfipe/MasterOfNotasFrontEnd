@@ -22,7 +22,7 @@ const routes = [
     component: MainView,
     children: [
       {
-        path:'disciplines',
+        path:'',
         name: 'disciplines',
         component: DisciplineList
       },
