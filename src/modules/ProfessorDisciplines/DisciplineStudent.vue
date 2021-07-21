@@ -2,10 +2,7 @@
     <div>
         <div class="title">
             <span>
-            #{{disciplineData.id}} - {{disciplineData.name}}
-            </span> - 
-            <span>
-                {{disciplineData.semester}}º semestre {{disciplineData.year}}
+            #{{discipline.sigla}} - {{discipline.nome}}
             </span>
         </div>
         <div class="students">
@@ -39,6 +36,7 @@ import { mapActions, mapState } from 'vuex'
         },
         data () {
       return {
+        discipline: {},
         headers: [
             { text: '', value: 'check' },
             { text: 'Nome do Aluno', value: 'name' },
@@ -52,7 +50,7 @@ import { mapActions, mapState } from 'vuex'
     },
     async created () {
       await this.getStudentsRequest();
-      const response = await this.getDisciplineRequest({id:this.$route.params.id})
+      this.discipline = await this.getDisciplineRequest({id:this.$route.params.id})
     },
     methods: {
       ...mapActions(['getStudentsRequest','addStudentToDisciplineRequest','getDisciplineRequest']),
