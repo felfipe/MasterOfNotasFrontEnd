@@ -6,6 +6,7 @@ import DisciplineList from '@/modules/ProfessorDisciplines/DisciplinesList.vue'
 import DisciplineAdd from '@/modules/ProfessorDisciplines/DisciplineAddEdit.vue'
 import DisciplineStudent from '@/modules/ProfessorDisciplines/DisciplineStudent.vue'
 import QuizView from '@/modules/Quiz/QuizView.vue'
+import QuestQuiz from '@/modules/Quiz/components/QuestQuiz.vue'
 
 Vue.use(VueRouter)
 
@@ -43,9 +44,16 @@ const routes = [
     ]
   },
   {
-    path: '/quiz',
+    path: '/quiz/:quizid',
     name: 'quiz',
-    component: QuizView
+    component: QuizView,
+    children: [
+      {
+        path: 'question/:questionid',
+        name: 'question-quiz',
+        component: QuestQuiz
+      }
+    ]
   },
 ]
 
