@@ -46,4 +46,12 @@ export default {
         const response = await services.getQuizbyId(id)
         return response.data;
     },
+    async addQuizRequest({commit},{name, amount, discipline,active}){
+        const response = await services.addQuiz(name,discipline,amount,active)
+        commit('addQuiz', {id: response.data.id, nome:name, quantidade:amount,ativo:active,disciplinaid:discipline})
+    },
+    async getQuizsRequest({commit}){
+        const response = await services.getQuizs()
+        commit('setQuizs', response.data)
+    },
 }

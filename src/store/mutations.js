@@ -24,4 +24,10 @@ export default {
     setQuestions(state,questions){
         state.questions = questions
     },
+    addQuiz(state,quiz){
+        state.quizs.push(quiz)
+    },
+    setQuizs(state,quizs){
+        state.quizs = quizs
+    },
 }
