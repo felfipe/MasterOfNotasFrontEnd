@@ -39,6 +39,14 @@ const removeDiscipline = async(idDisciplina) => {
     return response
 }
 
+const addQuiz = async(nome,disciplinaId,quantidade, ativo) =>{
+    const response = await axios.post('/criarEnquete',{nome,disciplinaId, quantidade,ativo})
+    return response
+}
+const getQuizs = async () => {
+    const response = await axios.get('/listarEnquetes')
+    return response
+}
 export default {
     login,
     signUp,
@@ -48,5 +56,7 @@ export default {
     updateDiscipline,
     getStudents,
     addStudentToDiscipline,
-    removeDiscipline
+    removeDiscipline,
+    addQuiz,
+    getQuizs
 }

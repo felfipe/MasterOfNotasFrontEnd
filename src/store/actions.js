@@ -37,5 +37,14 @@ export default {
     async removeDisciplineRequest({commit},{disciplineID}){
         await services.removeDiscipline(disciplineID)
         commit('removeDiscipline', disciplineID)
-    }
+    },
+
+    async addQuizRequest({commit},{name, amount, discipline,active}){
+        const response = await services.addQuiz(name,discipline,amount,active)
+        commit('addQuiz', {id: response.data.id, nome:name, quantidade:amount,ativo:active,disciplinaid:discipline})
+    },
+    async getQuizsRequest({commit}){
+        const response = await services.getQuizs()
+        commit('setQuizs', response.data)
+    },
 }

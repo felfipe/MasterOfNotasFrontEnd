@@ -20,5 +20,11 @@ export default {
     },
     removeDiscipline(state,disciplineid){
         state.disciplines.splice(state.disciplines.indexOf(disciplineid),1)
-    }
+    },
+    addQuiz(state,quiz){
+        state.quizs.push(quiz)
+    },
+    setQuizs(state,quizs){
+        state.quizs = quizs
+    },
 }
