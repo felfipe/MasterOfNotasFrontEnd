@@ -20,5 +20,8 @@ export default {
     },
     removeDiscipline(state,disciplineid){
         state.disciplines.splice(state.disciplines.indexOf(disciplineid),1)
-    }
+    },
+    setQuestions(state,questions){
+        state.questions = questions
+    },
 }

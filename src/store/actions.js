@@ -37,5 +37,13 @@ export default {
     async removeDisciplineRequest({commit},{disciplineID}){
         await services.removeDiscipline(disciplineID)
         commit('removeDiscipline', disciplineID)
-    }
+    },
+    async getQuestionsRequest({commit}, id){
+        const response = await services.getQuestions(id)
+        commit('setQuestions', response.data)
+    },
+    async getQuizbyId({commit},id){
+        const response = await services.getQuizbyId(id)
+        return response.data;
+    },
 }

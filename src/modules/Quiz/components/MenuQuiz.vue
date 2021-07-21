@@ -8,7 +8,7 @@
     <v-list-item>
       <v-list-item-content class="title-number-content">
         <v-list-item-title class="text-h6"> Quiz </v-list-item-title>
-        <v-list-item-subtitle> Funções 1º grau </v-list-item-subtitle>
+        <v-list-item-subtitle> {{info_quiz.nome}} </v-list-item-subtitle>
         <div class="question-quiz">
           <v-btn class="" color="white" tile v-for="n in num_question" @click="question_open(n)" v-bind:key="n">{{ n }}</v-btn>
         </div> 
@@ -69,6 +69,10 @@ export default {
       required: true,
       default: 0,
     },
+    info_quiz:{
+      require: true,
+      default: null
+    }
   },
   methods:{
     question_open(n){
