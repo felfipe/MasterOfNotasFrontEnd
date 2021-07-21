@@ -13,23 +13,28 @@
             >
                 <template v-slot:item.actions="{ item }">
                     <v-btn
+                        class="discipline__action"
                         color="primary"
-                        @click="item.id"
+                        @click="navigate({path:`/student-discipline/${item.id}`})"
                     >
                         <v-icon dark>
                             mdi-cloud-upload
                         </v-icon>
                     </v-btn>
                     <v-btn
+                      class="discipline__action"
                       color="warning"
                       dark
+                      @click="navigate({path:`/update-discipline/${item.id}`})"
                     >
                         <v-icon dark>
                             mdi-cloud-upload
                         </v-icon>
                     </v-btn>
                     <v-btn
-                          color="error"
+                        class="discipline__action"
+                        color="error"
+                        @click="removeDiscipline(item.id)"
                     >
                     <v-icon dark>
                         mdi-cloud-upload
@@ -49,7 +54,7 @@ import { mapActions, mapState } from 'vuex'
         headers: [
           { text: 'Sigla', value: 'sigla' },
           { text: 'Nome Da Disciplina', value: 'nome' },
-          { text: 'Actions', value: 'actions' },
+          { text: 'Actions', value: 'actions',align:'right' },
         ],
         desserts: [
           {
@@ -67,9 +72,12 @@ import { mapActions, mapState } from 'vuex'
       this.getDisciplinesRequest();
     },
     methods: {
-      ...mapActions(['getDisciplinesRequest']),
+      ...mapActions(['getDisciplinesRequest','removeDisciplineRequest']),
       navigate(to){
         this.$router.push(to)  
+      },
+      async removeDiscipline(disciplineID){
+        await this.removeDisciplineRequest({disciplineID})
       }
     },
     }
@@ -81,5 +89,8 @@ import { mapActions, mapState } from 'vuex'
     background-color: white;
     padding: 20px;
     margin-bottom: 20px;
+}
+.discipline__action{
+  margin:0 10px;
 }
 </style>

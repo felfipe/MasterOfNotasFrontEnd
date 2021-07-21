@@ -20,10 +20,22 @@ export default {
     },
     async addDisciplineRequest({commit},{name,initials}){
         const response = await services.addDiscipline(name,initials)
-        commit('addDiscipline', {id: response.data.id, name, initials})
+        commit('addDiscipline', {id: response.data.id, nome:name, sigla:initials})
     },
     async updateDisciplineRequest({commit},{id,name,initials}){
         await services.updateDiscipline(id,name,initials)
         commit('updateDiscipline', {id, name, initials})
     },
+    async getStudentsRequest({commit}){
+        const response = await services.getStudents()
+        commit('setStudents', response.data)
+    },
+    async addStudentToDisciplineRequest({commit},{disciplineID, studentsID}){
+        console.log(studentsID)
+        await services.addStudentToDiscipline(disciplineID,studentsID)
+    },
+    async removeDisciplineRequest({commit},{disciplineID}){
+        await services.removeDiscipline(disciplineID)
+        commit('removeDiscipline', disciplineID)
+    }
 }

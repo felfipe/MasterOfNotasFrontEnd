@@ -32,11 +32,11 @@ const routes = [
       },
       {
         path:'update-discipline/:id',
-        name: 'add-discipline',
+        name: 'update-discipline',
         component: DisciplineAdd
       },
       {
-        path:'student-discipline',
+        path:'student-discipline/:id',
         name: 'student-discipline',
         component: DisciplineStudent
       }

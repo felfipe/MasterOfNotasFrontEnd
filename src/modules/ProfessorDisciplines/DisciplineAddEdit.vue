@@ -5,8 +5,8 @@
         </v-text-field>
         <v-text-field label="Sigla da disciplina" v-model="discipline.initials" type="text">
         </v-text-field>
-        <v-btn color="#00C853" class="white--text" block @click="addDiscipline()">
-                Cadastrar
+        <v-btn color="#00C853" class="white--text" block @click="addUpdateDiscipline()">
+                {{text}}
         </v-btn>
     </div>
 </template>
@@ -14,12 +14,6 @@
 <script>
 import { mapActions } from 'vuex'
     export default {
-        props: {
-            isEditing: {
-                type: Boolean,
-                default: false
-            },
-        },
         data() {
             return {
                 discipline: {
@@ -27,20 +21,31 @@ import { mapActions } from 'vuex'
                     name:'',
                     initials: '',
                 },
-                items: []
+                items: [],
+                isEditing: false,
             }
         },
-        created () {
+        computed: {
+            text() {
+                return this.isEditing? 'Atualizar':'Cadastrar' 
+            }
+        },
+        async created () {
             const id = this.$route.params.id
             if (id) {
-                this.discipline = this.getDisciplineRequest()
+                this.isEditing = true
+                const response = await this.getDisciplineRequest({id})
+                this.discipline.id = response.id
+                this.discipline.name = response.nome
+                this.discipline.initials = response.sigla
             }
         },
         methods: {
-            ...mapActions(['addDisciplineRequest']),
+            ...mapActions(['addDisciplineRequest','getDisciplineRequest']),
             async addUpdateDiscipline(){
                 if (this.discipline.id) await this.updateDisciplineRequest(this.discipline)
                 else this.addDisciplineRequest(this.discipline)
+                this.$router.push({name:'disciplines'})
             }
         },
     }

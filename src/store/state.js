@@ -1,4 +1,5 @@
 export default {
-    user: {},
-    disciplines: []
+    user: localStorage.getItem('user')? JSON.parse(localStorage.getItem('user')) : {},
+    disciplines: [],
+    students: []
 }

@@ -2,7 +2,8 @@ import Vue from 'vue'
 export default {
     setUser(state, user) {
         state.user = user
-        window.localStorage.setItem('token',user.token)
+        localStorage.setItem('token',user.token)
+        localStorage.setItem('user',JSON.stringify(user))
     },
     setDisciplines(state,disciplines){
         state.disciplines = disciplines
@@ -13,5 +14,11 @@ export default {
     updateDiscipline(state,discipline){
         const index = state.disciplines.findIndex(dis => dis.id == discipline.id)
         Vue.set(state.disciplines,index,discipline)
+    },
+    setStudents(state, students) {
+        state.students = students
+    },
+    removeDiscipline(state,disciplineid){
+        state.disciplines.splice(state.disciplines.indexOf(disciplineid),1)
     }
 }

@@ -29,6 +29,7 @@
         <div class="content__sidebar" :class="{'is-expanded': isMenuExpanded}">
             <p v-if="isMenuExpanded" style="width:100%;font-size:18px;color:white;margin-top:20px">Dashboard</p>
             <menu-item @click.native="navigate({name:'disciplines'})" text="teste" icon="menu" active v-if="isMenuExpanded"></menu-item>
+            <menu-item @click.native="logout()" text="Logout" icon="leave" active v-if="isMenuExpanded"></menu-item>
         </div>
         <div class="content__body">
             <router-view/>
@@ -86,6 +87,11 @@ import MenuItem from './components/MenuItem.vue'
         },
         navigate(to){
             this.$router.push(to)
+        },
+        logout(){
+            localStorage.removeItem('token')
+            localStorage.removeItem('user')
+            this.navigate({name:'login'})
         }
     },
   }

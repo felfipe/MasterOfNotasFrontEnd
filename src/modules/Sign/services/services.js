@@ -13,7 +13,7 @@ const getDisciplines = async () => {
     return response
 }
 const getDiscipline = async (id) => {
-    const response = await axios.get(`/listarDisciplinas/${id}`)
+    const response = await axios.get(`/listarDisciplina?idDisciplina=${id}`)
     return response
 }
 const addDiscipline = async(nome,sigla) =>{
@@ -24,11 +24,29 @@ const updateDiscipline = async(id,nome,sigla) => {
     const response = await axios.post('/atualizarDisciplina',{id,nome,sigla})
     return response
 }
+const getStudents = async() => {
+    const response = await axios.get('/listarAlunos',{headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }})
+    return response
+}
+const addStudentToDiscipline = async(disciplinaid,alunosid) => {
+    const response = await axios.post('/setAlunosDisciplina', {disciplinaid,alunosid})
+    return response
+}
+const removeDiscipline = async(idDisciplina) => {
+    const response = await axios.post('/deletarDisciplina', {idDisciplina})
+    return response
+}
+
 export default {
     login,
     signUp,
     getDisciplines,
     getDiscipline,
     addDiscipline,
-    updateDiscipline
+    updateDiscipline,
+    getStudents,
+    addStudentToDiscipline,
+    removeDiscipline
 }
