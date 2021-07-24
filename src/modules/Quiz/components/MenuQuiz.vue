@@ -10,7 +10,7 @@
         <v-list-item-title class="text-h6"> Quiz </v-list-item-title>
         <v-list-item-subtitle> {{info_quiz.nome}} </v-list-item-subtitle>
         <div class="question-quiz">
-          <v-btn class="" color="white" tile v-for="n in num_question" @click="question_open(n)" v-bind:key="n">{{ n }}</v-btn>
+          <v-btn color="white" tile v-for="n in num_question" :class="{ 'btn-num-active' : ifResponse(n)}" @click="question_open(n)" v-bind:key="n">{{ n }}</v-btn>
         </div> 
 
         <v-dialog
@@ -76,9 +76,21 @@ export default {
   },
   methods:{
     question_open(n){
-      const id_quiz = this.$route.params.quizid
-      this.$router.push(`/quiz/${id_quiz}/question/${n}`)
-    }
+      if(n != this.$route.params.questionid){
+        const id_quiz = this.$route.params.quizid
+        this.$router.push(`/quiz/${id_quiz}/question/${n}`)
+      }
+    },
+    ifResponse(questaoNum) {
+      const enqueteId = this.$route.params.quizid;
+      let responses = JSON.parse(localStorage.getItem("responseQuiz")) || [];
+      let index = responses.findIndex((response) =>response.enqueteId === enqueteId && parseInt(response.questaoNum) === questaoNum);
+      if (index === -1) {
+        return false;
+      } else {
+        return true;
+      }
+    },
   }
 };
 </script>

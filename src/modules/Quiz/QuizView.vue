@@ -17,14 +17,6 @@
       <v-container>
         <v-breadcrumbs v-if="questions_load" class="breadcrumbs-quiz" :items="items"></v-breadcrumbs>
         <router-view v-if="questions_load"></router-view>
-        <div class="btns-nav-quiz">
-          <v-btn v-bind:class="{ depressed: isFirst }" color="primary" x-large disabled>
-              <v-icon dark large> mdi-chevron-left </v-icon>
-          </v-btn>
-          <v-btn color="primary" x-large>
-              <v-icon dark large> mdi-chevron-right </v-icon>
-          </v-btn>
-      </div>
       </v-container>
     </v-main>
 
@@ -115,25 +107,5 @@ footer {
 }
 .breadcrumbs-quiz {
   padding-left: 2%;
-}
-.card-question {
-  width: 96%;
-  margin: 10px 2%;
-}
-.btns-nav-quiz {
-  width: 96%;
-  margin: 30px 2%;
-}
-.btns-nav-quiz button {
-  width: 48%;
-  font-size: 20px;
-}
-.btns-nav-quiz button:nth-child(1) {
-  background-color: #1976d2 !important;
-  margin-right: 2%;
-}
-.btns-nav-quiz button:nth-child(2) {
-  background-color: #0038a8 !important;
-  margin-left: 2%;
 }
 </style>

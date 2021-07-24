@@ -54,6 +54,7 @@ const getQuizs = async () => {
     const response = await axios.get('/listarEnquetes')
     return response
 }
+
 export default {
     login,
     signUp,

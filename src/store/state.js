@@ -3,5 +3,6 @@ export default {
     disciplines: [],
     students: [],
     questions: [],
-    quizs: []
+    quizs: [],
+    responseQuiz: localStorage.getItem('responseQuiz')? JSON.parse(localStorage.getItem('responseQuiz')) : [],
 }
