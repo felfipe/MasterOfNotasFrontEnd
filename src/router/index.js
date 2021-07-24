@@ -12,6 +12,10 @@ import QuestQuiz from '@/modules/Quiz/components/QuestQuiz.vue'
 import QuizAddEdit from '@/modules/ProfessorQuiz/QuizAddEdit.vue'
 import QuizAddQuestion from '@/modules/ProfessorQuiz/QuizAddQuestion.vue'
 import QuizList from '@/modules/ProfessorQuiz/QuizList.vue'
+
+import AlunoDisciplinas from '@/modules/AlunoDisciplinas/AlunoDisciplinaView.vue'
+import AlunoQuizDisciplinasView from '@/modules/AlunoQuizDisciplinas/AlunoQuizDisciplinasView.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -66,12 +70,21 @@ const routes = [
         name: 'update-quiz',
         component: DisciplineAdd
       },
-      
       {
         path:'question-quiz',
         name: 'question-quiz',
         component: QuizAddQuestion
-      }
+      },
+      {
+        path:'aluno/disciplinas',
+        name: 'disciplinas-aluno',
+        component: AlunoDisciplinas
+      },
+      {
+        path:'aluno/disciplinas/:idDisciplina',
+        name: 'quiz-disciplinas-aluno',
+        component: AlunoQuizDisciplinasView
+      },
     ]
   },
   {

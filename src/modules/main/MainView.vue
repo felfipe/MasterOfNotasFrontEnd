@@ -2,40 +2,42 @@
   <div class="main">
     <header class="header">
         <div class="header__left">
-            <span @click="toggleMenu()">
-                <v-icon
-                    large
-                    color="#1E5BD7"
-                >
-                    mdi-menu
-                </v-icon>
-            </span>
+            <v-app-bar-nav-icon
+                color="#1E5BD7"
+                @click="toggleMenu()"
+                class="btnToggleMenu"
+            ></v-app-bar-nav-icon>
             <div class="menu__logo__wrapper">
-                <img class="menu__logo" src="@/assets/logo-2.svg" alt="">
+                <v-img
+                    :src="require('@/assets/logo-2.svg')"
+                    max-height="30"
+                    max-width="200"
+                ></v-img>
             </div>
         </div>
         <div class="header__right">
             <div class="header__user-type" v-if="user">{{user.tipo}}</div>
             <v-icon
-                    x-large
-                    color="#1E5BD7"
-                >
-                    mdi-account-box
-                </v-icon>
+                color="#1E5BD7"
+            >
+                mdi-account-box
+            </v-icon>
         </div>
         
     </header>
     <div class="content">
-        <div class="content__sidebar" :class="{'is-expanded': isMenuExpanded}">
-            <p v-if="isMenuExpanded" style="width:100%;font-size:18px;color:white;margin-top:20px">Dashboard</p>
-            <menu-item @click.native="navigate({name:'disciplines'})" text="Disciplinas" icon="menu" active v-if="isMenuExpanded"></menu-item>
-            <menu-item @click.native="navigate({name:'disciplines'})" text="Questões" icon="menu" active v-if="isMenuExpanded"></menu-item>
-            <menu-item @click.native="navigate({name:'perfil'})" text="Perfil" icon="menu" active v-if="isMenuExpanded"></menu-item>
-            <menu-item @click.native="logout()" text="Logout" icon="leave" active v-if="isMenuExpanded"></menu-item>
-        </div>
-        <div class="content__body">
-            <router-view/>
-        </div>
+        <v-navigation-drawer v-model="isMenuExpanded" width="300" color="#1E5BD7" app>
+            <MenuItem ></MenuItem>
+        </v-navigation-drawer>
+
+        <v-main>
+            <v-container>
+                <div class="content__body">
+                    <router-view/>
+                </div>
+            </v-container>
+        </v-main>
+        
     </div>
     <footer><v-card
         flat
@@ -60,30 +62,7 @@ import MenuItem from './components/MenuItem.vue'
     },
     data: () => ({ 
         drawer: null ,
-        isMenuExpanded: false,
-        items: [
-        {
-          text: 'Dashboard',
-          disabled: false,
-          href: 'breadcrumbs_dashboard',
-        },
-        {
-          text: 'Link 1',
-          disabled: false,
-          href: 'breadcrumbs_link_1',
-        },
-        {
-          text: 'Link 2',
-          disabled: true,
-          href: 'breadcrumbs_link_2',
-        },
-        {
-          text: 'Link 3',
-          disabled: true,
-          href: 'breadcrumbs_link_3',
-        },
-      ],
-        
+        isMenuExpanded: true,
     }),
     computed:{
         ...mapState(['user'])
@@ -92,14 +71,6 @@ import MenuItem from './components/MenuItem.vue'
         toggleMenu() {
             this.isMenuExpanded = !this.isMenuExpanded
         },
-        navigate(to){
-            this.$router.push(to)
-        },
-        logout(){
-            localStorage.removeItem('token')
-            localStorage.removeItem('user')
-            this.navigate({name:'login'})
-        }
     },
   }
 </script>
@@ -116,13 +87,17 @@ import MenuItem from './components/MenuItem.vue'
     align-items: center;
 }
 .header{
-    height: 90px;
+    height: 64px;
     display: flex;
     justify-content: space-between;
     padding: 0px 20px;
     background-color: white;
     max-width: 100vw;
     overflow: hidden;
+    z-index: 9;
+    position: fixed;
+    width: 100%;
+    box-shadow: 0px 2px 4px 6px rgb(0 0 0 / 1%), 0px 4px 5px 0px rgb(0 0 0 / 2%), 0px 1px 10px 0px rgb(0 0 0 / 4%);
 }
 .header__right{
     height: 100%;
@@ -130,8 +105,10 @@ import MenuItem from './components/MenuItem.vue'
     align-items: center;
 }
 .header__right .header__user-type{
-    margin-right: 20px;
+    margin-right: 10px;
     color: #1E5BD7;
+    font-size: 0.8rem;
+    font-weight: 500;
 }
 .header__left{
     height: 100%;
@@ -150,8 +127,8 @@ import MenuItem from './components/MenuItem.vue'
     max-width: 250px;
 }
 .content{
-flex-grow:1;
-display: flex;
+    flex-grow:1;
+    display: flex;
 }
 .content__sidebar{
     width: 0px;
@@ -169,7 +146,19 @@ display: flex;
     padding: 20px 40px;
 }
 .is-expanded{
-    width: 300px;
+    width: 380px;
     padding: 10px;
+}
+.btnToggleMenu{
+    margin-right: 10px;
+}
+nav{
+    padding-top: 70px;
+}
+footer{
+    z-index: 9;
+}
+.v-main{
+    margin-top: 64px;
 }
 </style>

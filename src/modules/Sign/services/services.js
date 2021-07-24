@@ -58,6 +58,10 @@ const postResponseQuiz = async(enqueteId,respostas) =>{
     const response = await axios.post('/responderEnquete',{enqueteId,respostas})
     return response.status
 }
+const getDisciplinasAluno = async () => {
+    const response = await axios.get('/listarDisciplinasMatriculadas')
+    return response
+}
 
 export default {
     login,
@@ -73,5 +77,6 @@ export default {
     getQuizbyId,
     addQuiz,
     getQuizs,
-    postResponseQuiz
+    postResponseQuiz,
+    getDisciplinasAluno
 }

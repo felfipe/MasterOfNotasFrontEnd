@@ -59,5 +59,9 @@ export default {
         const response = await services.postResponseQuiz(enqueteId, responseQuiz)
         return response;
     },
+    async getDisciplinasMatriculadas({commit}){
+        const response = await services.getDisciplinasAluno()
+        return response.data;
+    },
 
 }
