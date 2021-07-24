@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="discipline__add">
-            <v-btn block color="#00C853" class="white--text" @click="navigate({name:'add-quiz'})">
+            <v-btn block color="#00C853" class="white--text" @click="navigate({path:`add-quiz`})">
                 Adicionar Quiz
             </v-btn>
         </div>
@@ -12,23 +12,31 @@
                 class="elevation-1"
             >
                 <template v-slot:item.actions="{ item }">
+                  <v-btn
+                        class="discipline__action"
+                        color="success"
+                        @click="startQuiz()"
+                        :disabled="item.ativo"
+                    >
+                      Iniciar Enquete
+                    </v-btn>
                     <v-btn
                         class="discipline__action"
                         color="primary"
-                        @click="navigate({path:`/student-discipline/${item.id}`})"
+                        @click="navigate({path:`/questions-quiz-professor/${item.id}`})"
                     >
                         <v-icon dark>
-                            mdi-cloud-upload
+                            mdi-pen
                         </v-icon>
                     </v-btn>
                     <v-btn
                       class="discipline__action"
                       color="warning"
                       dark
-                      @click="navigate({path:`/update-discipline/${item.id}`})"
+                      @click="navigate({path:`/question-quiz-professor/${item.id}`})"
                     >
                         <v-icon dark>
-                            mdi-cloud-upload
+                            mdi-plus
                         </v-icon>
                     </v-btn>
                 </template>
@@ -54,8 +62,10 @@ import { mapActions, mapState } from 'vuex'
     computed: {
       ...mapState(['quizs']),
       quizData(){
+        if (!this.quizs) return []
         return this.quizs.map(item => {
         return {
+          id: item.id,
           nome: item.nome,
           ativo: item.ativo,
           disciplina: item.disciplina.nome,

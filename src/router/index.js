@@ -11,6 +11,7 @@ import QuestQuiz from '@/modules/Quiz/components/QuestQuiz.vue'
 import QuizAddEdit from '@/modules/ProfessorQuiz/QuizAddEdit.vue'
 import QuizAddQuestion from '@/modules/ProfessorQuiz/QuizAddQuestion.vue'
 import QuizList from '@/modules/ProfessorQuiz/QuizList.vue'
+import QuizQuestions from '@/modules/ProfessorQuiz/QuizQuestions.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -21,12 +22,11 @@ const routes = [
   },
   {
     path: '/',
-    name: 'home',
     component: MainView,
     children: [
       {
         path:'',
-        name: 'disciplines',
+        name: 'home',
         component: DisciplineList
       },
       {
@@ -61,12 +61,17 @@ const routes = [
         name: 'update-quiz',
         component: DisciplineAdd
       },
+      {
+        path:'questions-quiz-professor/:id',
+        name: 'questions-quiz-professor',
+        component: QuizQuestions
+      },
       
       {
-        path:'question-quiz',
-        name: 'question-quiz',
+        path:'question-quiz-professor/:id',
+        name: 'question-quiz-professor',
         component: QuizAddQuestion
-      }
+      },
     ]
   },
   {

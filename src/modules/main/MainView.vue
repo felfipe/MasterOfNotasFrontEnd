@@ -29,7 +29,7 @@
         <div class="content__sidebar" :class="{'is-expanded': isMenuExpanded}">
             <p v-if="isMenuExpanded" style="width:100%;font-size:18px;color:white;margin-top:20px">Dashboard</p>
             <menu-item @click.native="navigate({name:'disciplines'})" text="Disciplinas" icon="menu" active v-if="isMenuExpanded"></menu-item>
-            <menu-item @click.native="navigate({name:'disciplines'})" text="Questões" icon="menu" active v-if="isMenuExpanded"></menu-item>
+            <menu-item @click.native="navigate({name:'quiz-menu'})" text="Questões" icon="menu" active v-if="isMenuExpanded"></menu-item>
             <menu-item @click.native="logout()" text="Logout" icon="leave" active v-if="isMenuExpanded"></menu-item>
         </div>
         <div class="content__body">

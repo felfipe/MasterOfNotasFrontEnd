@@ -47,6 +47,14 @@ const getQuizs = async () => {
     const response = await axios.get('/listarEnquetes')
     return response
 }
+const addQuestionToQuiz = async(enqueteId,enunciado,alternativas) => {
+    const response = await axios.post('/criarQuestao',{enqueteId,enunciado, alternativas})
+    return response
+}
+const getQuizQuestions = async (idEnquete) => {
+    const response = await axios.get(`/listarQuestoes?idEnquete=${idEnquete}`)
+    return response
+}
 export default {
     login,
     signUp,
@@ -58,5 +66,7 @@ export default {
     addStudentToDiscipline,
     removeDiscipline,
     addQuiz,
-    getQuizs
+    getQuizs,
+    addQuestionToQuiz,
+    getQuizQuestions
 }
