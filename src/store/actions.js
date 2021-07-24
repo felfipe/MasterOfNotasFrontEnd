@@ -38,7 +38,14 @@ export default {
         await services.removeDiscipline(disciplineID)
         commit('removeDiscipline', disciplineID)
     },
-
+    async getQuestionsRequest({commit}, id){
+        const response = await services.getQuestions(id)
+        commit('setQuestions', response.data)
+    },
+    async getQuizbyId({commit},id){
+        const response = await services.getQuizbyId(id)
+        return response.data;
+    },
     async addQuizRequest({commit},{name, amount, discipline,active}){
         const response = await services.addQuiz(name,discipline,amount,active)
         commit('addQuiz', {id: response.data.id, nome:name, quantidade:amount,ativo:active,disciplinaid:discipline})
@@ -57,4 +64,14 @@ export default {
         const response = await services.getQuizs()
         commit('setQuizs', response.data)
     },
+    async addResponseQuiz({commit},{enqueteId,responseQuiz}){
+        console.log(commit, enqueteId, responseQuiz)
+        const response = await services.postResponseQuiz(enqueteId, responseQuiz)
+        return response;
+    },
+    async getDisciplinasMatriculadas({commit}){
+        const response = await services.getDisciplinasAluno()
+        return response.data;
+    },
+
 }

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import SignView from '@/modules/Sign/SignView.vue'
 import MainView from '@/modules/main/MainView.vue'
+import Perfil from '@/modules/Perfil/Perfil.vue'
 import DisciplineList from '@/modules/ProfessorDisciplines/DisciplinesList.vue'
 import DisciplineAdd from '@/modules/ProfessorDisciplines/DisciplineAddEdit.vue'
 import DisciplineStudent from '@/modules/ProfessorDisciplines/DisciplineStudent.vue'
@@ -12,6 +13,10 @@ import QuizAddEdit from '@/modules/ProfessorQuiz/QuizAddEdit.vue'
 import QuizAddQuestion from '@/modules/ProfessorQuiz/QuizAddQuestion.vue'
 import QuizList from '@/modules/ProfessorQuiz/QuizList.vue'
 import QuizQuestions from '@/modules/ProfessorQuiz/QuizQuestions.vue'
+
+import AlunoDisciplinas from '@/modules/AlunoDisciplinas/AlunoDisciplinaView.vue'
+import AlunoQuizDisciplinasView from '@/modules/AlunoQuizDisciplinas/AlunoQuizDisciplinasView.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -44,7 +49,11 @@ const routes = [
         name: 'student-discipline',
         component: DisciplineStudent
       },
-
+      {
+        path:'perfil/',
+        name: 'perfil',
+        component: Perfil
+      },
 
       {
         path:'quiz',
@@ -71,6 +80,16 @@ const routes = [
         path:'question-quiz-professor/:id',
         name: 'question-quiz-professor',
         component: QuizAddQuestion
+      },
+      {
+        path:'aluno/disciplinas',
+        name: 'disciplinas-aluno',
+        component: AlunoDisciplinas
+      },
+      {
+        path:'aluno/disciplinas/:idDisciplina',
+        name: 'quiz-disciplinas-aluno',
+        component: AlunoQuizDisciplinasView
       },
     ]
   },
