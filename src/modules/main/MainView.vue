@@ -30,6 +30,7 @@
             <p v-if="isMenuExpanded" style="width:100%;font-size:18px;color:white;margin-top:20px">Dashboard</p>
             <menu-item @click.native="navigate({name:'disciplines'})" text="Disciplinas" icon="menu" active v-if="isMenuExpanded"></menu-item>
             <menu-item @click.native="navigate({name:'disciplines'})" text="Questões" icon="menu" active v-if="isMenuExpanded"></menu-item>
+            <menu-item @click.native="navigate({name:'perfil'})" text="Perfil" icon="menu" active v-if="isMenuExpanded"></menu-item>
             <menu-item @click.native="logout()" text="Logout" icon="leave" active v-if="isMenuExpanded"></menu-item>
         </div>
         <div class="content__body">
@@ -75,6 +76,11 @@ import MenuItem from './components/MenuItem.vue'
           text: 'Link 2',
           disabled: true,
           href: 'breadcrumbs_link_2',
+        },
+        {
+          text: 'Link 3',
+          disabled: true,
+          href: 'breadcrumbs_link_3',
         },
       ],
         

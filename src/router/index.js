@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import SignView from '@/modules/Sign/SignView.vue'
 import MainView from '@/modules/main/MainView.vue'
+import Perfil from '@/modules/Perfil/Perfil.vue'
 import DisciplineList from '@/modules/ProfessorDisciplines/DisciplinesList.vue'
 import DisciplineAdd from '@/modules/ProfessorDisciplines/DisciplineAddEdit.vue'
 import DisciplineStudent from '@/modules/ProfessorDisciplines/DisciplineStudent.vue'
@@ -44,7 +45,11 @@ const routes = [
         name: 'student-discipline',
         component: DisciplineStudent
       },
-
+      {
+        path:'perfil/',
+        name: 'perfil',
+        component: Perfil
+      },
 
       {
         path:'quiz',
