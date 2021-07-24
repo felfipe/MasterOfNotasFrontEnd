@@ -94,7 +94,7 @@ export default {
   width: 100%;
   height: 100%;
   position: fixed;
-  z-index: 11;
+  z-index: 999;
   background-color: rgb(255 255 255 / 80%)
 }
 .load-page-quiz > div{
@@ -118,6 +118,7 @@ nav {
   border-color: transparent !important;
   border: 0 !important;
   position: absolute !important;
+  padding-top: 64px !important;
 }
 main {
   padding: 2rem;
@@ -126,6 +127,7 @@ main {
 footer {
   background-color: #0038a8 !important;
   color: #fff !important;
+  z-index: 99;
 }
 .breadcrumbs-quiz {
   padding-left: 2%;

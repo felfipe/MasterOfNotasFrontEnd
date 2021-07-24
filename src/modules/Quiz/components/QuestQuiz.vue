@@ -68,10 +68,10 @@ export default {
       if (index === -1) {
         return null;
       } else {
-        return responses[index].respotaId;
+        return responses[index].respostaId;
       }
     },
-    saveResponseQuiz(enqueteId, questaoId, respotaId) {
+    saveResponseQuiz(enqueteId, questaoId, respostaId) {
       let questaoNum = this.num_question;
       let responses = JSON.parse(localStorage.getItem("responseQuiz")) || [];
       let index = responses.findIndex(
@@ -79,9 +79,9 @@ export default {
           response.enqueteId === enqueteId && response.questaoId === questaoId
       );
       if (index === -1) {
-        responses.push({ enqueteId, questaoId, questaoNum , respotaId });
+        responses.push({ enqueteId, questaoId, questaoNum , respostaId });
       } else {
-        responses[index].respotaId = respotaId;
+        responses[index].respostaId = respostaId;
       }
       localStorage.setItem("responseQuiz", JSON.stringify(responses));
     },
