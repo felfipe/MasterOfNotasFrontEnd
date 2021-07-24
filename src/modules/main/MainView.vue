@@ -11,7 +11,7 @@
                 </v-icon>
             </span>
             <div class="menu__logo__wrapper">
-                <img class="menu__logo" src="@/assets/logo.svg" alt="">
+                <img class="menu__logo" src="@/assets/logo-2.svg" alt="">
             </div>
         </div>
         <div class="header__right">
