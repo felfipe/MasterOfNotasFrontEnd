@@ -1,5 +1,13 @@
 <template>
   <v-app id="inspire">
+    <div v-if="!questions_load" class="load-page-quiz">
+      <v-progress-circular
+      :size="50"
+      :width="7"
+      color="primary"
+      indeterminate
+      ></v-progress-circular>
+    </div>
     <MenuQuiz v-if="questions_load" :controle="drawer" :num_question=quiz.quantidade :info_quiz=quiz></MenuQuiz>
     <v-app-bar color="blue darken-2" absolute>
       <v-app-bar-nav-icon
@@ -82,10 +90,24 @@ export default {
 };
 </script>
 <style scoped>
+.load-page-quiz{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 11;
+  background-color: rgb(255 255 255 / 80%)
+}
+.load-page-quiz > div{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -25px;
+  margin-left: -25px;
+}
 header {
   top: 0 !important;
   left: 0 !important;
-  z-index: 99999 !important;
+  z-index: 10 !important;
 }
 nav,
 main {
