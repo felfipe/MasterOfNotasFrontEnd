@@ -16,10 +16,10 @@
                       class="discipline__action"
                       color="error"
                       dark
-                      @click="navigate({path:`/question-quiz-discipline/${item.id}`})"
+                      @click="deleteQuestion(item.questaoId)"
                     >
                         <v-icon dark>
-                            mdi-cloud-upload
+                            mdi-delete
                         </v-icon>
                     </v-btn>
                 </template>
@@ -44,13 +44,17 @@ import { mapActions, mapState } from 'vuex'
       ...mapState(['quizs']),
     },
     async created () {
-      this.questions = await this.getQuizQuestionRequest(this.$route.params.id);
+      this.questions = await this.getQuizQuestionsRequest(this.$route.params.id);
     },
     methods: {
-      ...mapActions(['getQuizQuestionsRequest','removeDisciplineRequest']),
+      ...mapActions(['getQuizQuestionsRequest','removeQuizQuestionRequest']),
       navigate(to){
         this.$router.push(to)  
       },
+      deleteQuestion(questionId){
+        this.removeQuizQuestionRequest({quizId: this.$route.params.id, questionId})
+        this.questions = this.questions.filter(q => q.questaoId != questionId)
+      }
     },
     }
 </script>

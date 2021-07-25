@@ -105,7 +105,6 @@ export default {
     }
     this.radioGroup = this.ifChecked(this.num_quiz, this.question.questaoId);
     this.q_questions = this.questions.length;
-    console.log(this.q_questions)
   },
 };
 </script>

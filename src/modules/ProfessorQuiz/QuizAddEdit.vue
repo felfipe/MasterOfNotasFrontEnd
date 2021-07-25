@@ -59,7 +59,8 @@ import { mapActions, mapState } from 'vuex'
         methods: {
             ...mapActions(['addQuizRequest','getDisciplinesRequest']),
             async addUpdateDiscipline(){
-                if (this.quiz.id) await this.updateQuizRequest(this.quiz)
+                const disciplineName = this.disciplines.filter(dis => dis.id === this.quiz.discipline[0])
+                if (this.quiz.id) await this.updateQuizRequest({...this.quiz, disciplineName})
                 else this.addQuizRequest(this.quiz)
                 this.$router.push({name:'quiz-menu'})
             }

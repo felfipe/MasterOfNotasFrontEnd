@@ -59,7 +59,7 @@ const addQuestionToQuiz = async(enqueteId,enunciado,alternativas) => {
     return response
 }
 const getQuizQuestions = async (idEnquete) => {
-    const response = await axios.get(`/listarQuestoes?idEnquete=${idEnquete}`)
+    const response = await axios.get(`/listarQuestoesQuestionario?idQuestionario=${idEnquete}`)
     return response
 }
 const postResponseQuiz = async(enqueteId,respostas) =>{
@@ -70,7 +70,18 @@ const getDisciplinasAluno = async () => {
     const response = await axios.get('/listarDisciplinasMatriculadas')
     return response
 }
-
+const removeQuizQuestion = async (idQuestionario, idQuestao) => {
+    const response = await axios.post('/deletarQuestao',{idQuestionario,idQuestao})
+    return response
+}
+const startQuiz = async (enqueteId) => {
+    const response = await axios.post('/iniciarEnquete',{enqueteId})
+    return response
+}
+const finishQuiz = async (enqueteId) => {
+    const response = await axios.post('/encerrarEnquete',{enqueteId})
+    return response
+}
 export default {
     login,
     signUp,
@@ -88,5 +99,8 @@ export default {
     addQuestionToQuiz,
     getQuizQuestions,
     postResponseQuiz,
-    getDisciplinasAluno
+    getDisciplinasAluno,
+    removeQuizQuestion,
+    startQuiz,
+    finishQuiz,
 }

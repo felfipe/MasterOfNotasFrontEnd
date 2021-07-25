@@ -43,7 +43,8 @@ export default {
   data: () => ({
     selectedItem: 0,
     items: [
-      { title: "Disciplinas", icon: "mdi-paperclip", link: "disciplines" },
+      { title: "Disciplinas", icon: "mdi-paperclip", link: "home" },
+      { title: "Questões", icon: "mdi-clipboard-account", link: "quiz-menu" },
       { title: "Perfil", icon: "mdi-clipboard-account", link: "perfil" },
     ],
   }),

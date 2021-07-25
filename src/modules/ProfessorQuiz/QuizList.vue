@@ -14,11 +14,10 @@
                 <template v-slot:item.actions="{ item }">
                   <v-btn
                         class="discipline__action"
-                        color="success"
-                        @click="startQuiz()"
-                        :disabled="item.ativo"
+                        :color="!item.ativo? 'success': 'error'"
+                        @click="toggleQuiz(item.id, item.ativo)"
                     >
-                      Iniciar Enquete
+                      {{!item.ativo? 'Iniciar Enquete': 'Parar Enquete'}}
                     </v-btn>
                     <v-btn
                         class="discipline__action"
@@ -51,7 +50,7 @@ import { mapActions, mapState } from 'vuex'
     data () {
       return {
         headers: [
-          { text: 'Numero de Questões', value: 'quantidade' },
+          { text: 'Questões por Aluno', value: 'quantidade' },
           { text: 'Nome', value: 'nome' },
           { text: 'Ativo', value: 'ativo' },
           { text: 'Nome Da Disciplina', value: 'disciplina' },
@@ -79,10 +78,14 @@ import { mapActions, mapState } from 'vuex'
       await this.getQuizsRequest();
     },
     methods: {
-      ...mapActions(['getQuizsRequest','removeDisciplineRequest']),
+      ...mapActions(['getQuizsRequest','removeDisciplineRequest', 'startQuizRequest', 'finishQuizRequest']),
       navigate(to){
         this.$router.push(to)  
       },
+      async toggleQuiz(id,ativo){
+         if (ativo) await this.startQuizRequest({quizId:id})
+         else await this.finishQuizRequest({quizId: id})
+      }
     },
     }
 </script>

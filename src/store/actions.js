@@ -31,7 +31,6 @@ export default {
         commit('setStudents', response.data)
     },
     async addStudentToDisciplineRequest({commit},{disciplineID, studentsID}){
-        console.log(studentsID)
         await services.addStudentToDiscipline(disciplineID,studentsID)
     },
     async removeDisciplineRequest({commit},{disciplineID}){
@@ -46,9 +45,9 @@ export default {
         const response = await services.getQuizbyId(id)
         return response.data;
     },
-    async addQuizRequest({commit},{name, amount, discipline,active}){
+    async addQuizRequest({commit},{name, amount, discipline,active,disciplineName}){
         const response = await services.addQuiz(name,discipline,amount,active)
-        commit('addQuiz', {id: response.data.id, nome:name, quantidade:amount,ativo:active,disciplinaid:discipline})
+        commit('addQuiz', {id: response.data.id, nome:name, quantidade:amount,ativo:active,disciplina:{disciplinaid:discipline,nome: disciplineName},})
     },
     async addQuestionToQuizRequest({commit},{id,title,alternatives}){
         const response = await services.addQuestionToQuiz(id,title,alternatives)
@@ -57,7 +56,7 @@ export default {
     },
     async getQuizQuestionsRequest({commit},id){
         const response = await services.getQuizQuestions(id)
-        return response
+        return response.data
         //commit('setQuizs', response.data)
     },
     async getQuizsRequest({commit}){
@@ -65,7 +64,6 @@ export default {
         commit('setQuizs', response.data)
     },
     async addResponseQuiz({commit},{enqueteId,responseQuiz}){
-        console.log(commit, enqueteId, responseQuiz)
         const response = await services.postResponseQuiz(enqueteId, responseQuiz)
         return response;
     },
@@ -73,5 +71,17 @@ export default {
         const response = await services.getDisciplinasAluno()
         return response.data;
     },
+    async removeQuizQuestionRequest({commit},{questionId,quizId}){
+        const response = await services.removeQuizQuestion(quizId, questionId)
+        return response.data
+    },
+    async startQuizRequest({commit},{quizId}){
+        const response = await services.startQuiz(quizId)
+        return response.data
+    },
+    async finishQuizRequest({commit},{quizId}){
+        const response = await services.finishQuiz(quizId)
+        return response.data
+    }
 
 }
