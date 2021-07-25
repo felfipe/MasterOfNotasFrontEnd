@@ -45,7 +45,7 @@ import { mapActions } from 'vuex'
             async addUpdateDiscipline(){
                 if (this.discipline.id) await this.updateDisciplineRequest(this.discipline)
                 else this.addDisciplineRequest(this.discipline)
-                this.$router.push({name:'disciplines'})
+                this.$router.push({name:'home'})
             }
         },
     }
