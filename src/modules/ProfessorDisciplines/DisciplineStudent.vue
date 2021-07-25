@@ -55,7 +55,6 @@ import { mapActions, mapState } from 'vuex'
     methods: {
       ...mapActions(['getStudentsRequest','addStudentToDisciplineRequest','getDisciplineRequest']),
       studentRegister(value,id){
-        console.log(value)
         if(value){
           this.studentsToAdd.push(id)
         }else{
