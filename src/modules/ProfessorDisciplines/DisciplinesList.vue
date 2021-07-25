@@ -18,7 +18,7 @@
                         @click="navigate({path:`/student-discipline/${item.id}`})"
                     >
                         <v-icon dark>
-                            mdi-cloud-upload
+                            mdi-plus
                         </v-icon>
                     </v-btn>
                     <v-btn
@@ -28,7 +28,7 @@
                       @click="navigate({path:`/update-discipline/${item.id}`})"
                     >
                         <v-icon dark>
-                            mdi-cloud-upload
+                            mdi-pen
                         </v-icon>
                     </v-btn>
                     <v-btn
@@ -37,7 +37,7 @@
                         @click="removeDiscipline(item.id)"
                     >
                     <v-icon dark>
-                        mdi-cloud-upload
+                        mdi-close-thick
                     </v-icon>     
                     </v-btn>
                 </template>
