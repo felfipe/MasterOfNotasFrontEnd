@@ -61,7 +61,7 @@ const addQuestionToQuiz = async (enqueteId, enunciado, alternativas) => {
     return response
 }
 const getQuizQuestions = async (enqueteId) => {
-    const response = await axios.get(`/listarQuestoesQuestionario?questionarioId=${enqueteId}`)
+    const response = await axios.get(`/listarQuestoes?enqueteId=${enqueteId}`)
     return response
 }
 const postResponseQuiz = async (enqueteId, respostas) => {
