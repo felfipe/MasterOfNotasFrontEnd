@@ -91,7 +91,7 @@ import { mapActions } from 'vuex'
                         else
                         this.error = 'Senha e Confirmação possuem valores diferentes'
                     }
-                    if(response.tipo == 'aluno'){
+                    if(response.tipo == 'ALUNO'){
                         this.$router.push({name:'disciplinas-aluno'}) 
                     }else{
                         this.$router.push({name:'home'}) 
