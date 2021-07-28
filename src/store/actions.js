@@ -5,10 +5,12 @@ export default {
     async loginRequest({ commit }, { email, password }) {
         const response = await services.login(email, password)
         commit('setUser', response.data)
+        return response.data
     },
     async signUpRequest({ commit }, { email, username, password, type }) {
         const response = await services.signUp(email, username, password, type.toUpperCase())
         commit('setUser', response.data)
+        return response.data
     },
     async getDisciplinesRequest({commit}){
         const response = await services.getDisciplines()

@@ -80,15 +80,23 @@ import { mapActions } from 'vuex'
                 this.$router.push({name:to})
             },
             async sign(){
+                let response = null;
                 try {
-                    if (this.isSignIn) await this.loginRequest(this.user)
+                    if (this.isSignIn){
+                        response = await this.loginRequest(this.user)
+                    }
                     else {
                         if(this.confirmPassword == this.password)
-                        this.signUpRequest(this.user)
+                        response =await this.signUpRequest(this.user)
                         else
                         this.error = 'Senha e Confirmação possuem valores diferentes'
                     }
-                    this.$router.push({name:'home'}) 
+                    if(response.tipo == 'aluno'){
+                        this.$router.push({name:'disciplinas-aluno'}) 
+                    }else{
+                        this.$router.push({name:'home'}) 
+                    }
+                    
                 } catch (error) {
                     this.error = `Erro ao ${this.actionText}`
                 }
