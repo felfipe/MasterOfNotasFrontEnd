@@ -4,8 +4,8 @@ const login = async (email, senha) => {
     const response = await axios.post('/auth', { email, senha })
     return response
 }
-const signUp = async (email, nome,senha,tipo) => {
-    const response = await axios.post('/signUp', { email, nome, senha,tipo  })
+const signUp = async (email, nome, senha, tipo) => {
+    const response = await axios.post('/signUp', { email, nome, senha, tipo })
     return response
 }
 const getDisciplines = async () => {
@@ -13,73 +13,75 @@ const getDisciplines = async () => {
     return response
 }
 const getDiscipline = async (id) => {
-    const response = await axios.get(`/listarDisciplina?idDisciplina=${id}`)
+    const response = await axios.get(`/listarDisciplina?disciplinaId=${id}`)
     return response
 }
-const addDiscipline = async(nome,sigla) =>{
-    const response = await axios.post('/criarDisciplina',{nome,sigla})
+const addDiscipline = async (nome, sigla) => {
+    const response = await axios.post('/criarDisciplina', { nome, sigla })
     return response
 }
-const updateDiscipline = async(id,nome,sigla) => {
-    const response = await axios.post('/atualizarDisciplina',{id,nome,sigla})
+const updateDiscipline = async (id, nome, sigla) => {
+    const response = await axios.post('/atualizarDisciplina', { id, nome, sigla })
     return response
 }
-const getStudents = async() => {
-    const response = await axios.get('/listarAlunos',{headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }})
+const getStudents = async () => {
+    const response = await axios.get('/listarAlunos', {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    })
     return response
 }
-const addStudentToDiscipline = async(disciplinaId,alunosId) => {
-    const response = await axios.post('/setAlunosDisciplina', {disciplinaId,alunosId})
+const addStudentToDiscipline = async (disciplinaId, alunosId) => {
+    const response = await axios.post('/setAlunosDisciplina', { disciplinaId, alunosId })
     return response
 }
-const removeDiscipline = async(idDisciplina) => {
-    const response = await axios.post('/deletarDisciplina', {idDisciplina})
+const removeDiscipline = async (disciplinaId) => {
+    const response = await axios.post('/deletarDisciplina', { disciplinaId })
     return response
 }
 const getQuestions = async (enqueteId) => {
     const response = await axios.get(`/listarQuestoes?enqueteId=${enqueteId}`)
     return response
 }
-const getQuizbyId = async (idEnquete) => {
-    const response = await axios.get(`/listarEnqueteById?idEnquete=${idEnquete}`)
+const getQuizbyId = async (enqueteId) => {
+    const response = await axios.get(`/listarEnqueteById?enqueteId=${enqueteId}`)
     return response
 }
-const addQuiz = async(nome,disciplinaId,quantidade, ativo) =>{
-    const response = await axios.post('/criarEnquete',{nome,disciplinaId, quantidade,ativo})
+const addQuiz = async (nome, disciplinaId, quantidade, ativo) => {
+    const response = await axios.post('/criarEnquete', { nome, disciplinaId, quantidade, ativo })
     return response
 }
 const getQuizs = async () => {
     const response = await axios.get('/listarEnquetes')
     return response
 }
-const addQuestionToQuiz = async(enqueteId,enunciado,alternativas) => {
-    const response = await axios.post('/criarQuestao',{enqueteId,enunciado, alternativas})
+const addQuestionToQuiz = async (enqueteId, enunciado, alternativas) => {
+    const response = await axios.post('/criarQuestao', { enqueteId, enunciado, alternativas })
     return response
 }
-const getQuizQuestions = async (idEnquete) => {
-    const response = await axios.get(`/listarQuestoesQuestionario?idQuestionario=${idEnquete}`)
+const getQuizQuestions = async (enqueteId) => {
+    const response = await axios.get(`/listarQuestoesQuestionario?questionarioId=${enqueteId}`)
     return response
 }
-const postResponseQuiz = async(enqueteId,respostas) =>{
-    const response = await axios.post('/responderEnquete',{enqueteId,respostas})
+const postResponseQuiz = async (enqueteId, respostas) => {
+    const response = await axios.post('/responderEnquete', { enqueteId, respostas })
     return response.status
 }
 const getDisciplinasAluno = async () => {
     const response = await axios.get('/listarDisciplinasMatriculadas')
     return response
 }
-const removeQuizQuestion = async (idQuestionario, idQuestao) => {
-    const response = await axios.post('/deletarQuestao',{idQuestionario,idQuestao})
+const removeQuizQuestion = async (questionarioId, questaoId) => {
+    const response = await axios.post('/deletarQuestao', { questionarioId, questaoId })
     return response
 }
 const startQuiz = async (enqueteId) => {
-    const response = await axios.post('/iniciarEnquete',{enqueteId})
+    const response = await axios.post('/iniciarEnquete', { enqueteId })
     return response
 }
 const finishQuiz = async (enqueteId) => {
-    const response = await axios.post('/encerrarEnquete',{enqueteId})
+    const response = await axios.post('/encerrarEnquete', { enqueteId })
     return response
 }
 export default {

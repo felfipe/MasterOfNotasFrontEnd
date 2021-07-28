@@ -30,64 +30,64 @@ const routes = [
     component: MainView,
     children: [
       {
-        path:'',
+        path: '',
         name: 'home',
         component: DisciplineList
       },
       {
-        path:'add-discipline',
+        path: 'add-discipline',
         name: 'add-discipline',
         component: DisciplineAdd
       },
       {
-        path:'update-discipline/:id',
+        path: 'update-discipline/:id',
         name: 'update-discipline',
         component: DisciplineAdd
       },
       {
-        path:'student-discipline/:id',
+        path: 'student-discipline/:id',
         name: 'student-discipline',
         component: DisciplineStudent
       },
       {
-        path:'perfil/',
+        path: 'perfil/',
         name: 'perfil',
         component: Perfil
       },
 
       {
-        path:'quiz',
+        path: 'quiz',
         name: 'quiz-menu',
         component: QuizList
       },
       {
-        path:'add-quiz',
+        path: 'add-quiz',
         name: 'add-quiz',
         component: QuizAddEdit
       },
       {
-        path:'update-quiz',
+        path: 'update-quiz',
         name: 'update-quiz',
         component: DisciplineAdd
       },
       {
-        path:'questions-quiz-professor/:id',
+        path: 'questions-quiz-professor/:id',
         name: 'questions-quiz-professor',
         component: QuizQuestions
       },
-      
+
       {
-        path:'question-quiz-professor/:id',
+        path: 'question-quiz-professor/:id',
         name: 'question-quiz-professor',
         component: QuizAddQuestion
       },
       {
-        path:'aluno/disciplinas',
+        path: 'aluno/disciplinas',
         name: 'disciplinas-aluno',
         component: AlunoDisciplinas
       },
       {
-        path:'aluno/disciplinas/:idDisciplina',
+        path: 'aluno/disciplinas/:disciplinaId',
         name: 'quiz-disciplinas-aluno',
         component: AlunoQuizDisciplinasView
       },
