@@ -41,7 +41,7 @@ const removeDiscipline = async (disciplinaId) => {
     return response
 }
 const getQuestions = async (enqueteId) => {
-    const response = await axios.get(`/listarQuestoes?enqueteId=${enqueteId}`)
+    const response = await axios.get(`/listarQuestoesEnquete?enqueteId=${enqueteId}`)
     return response
 }
 const getQuizbyId = async (enqueteId) => {

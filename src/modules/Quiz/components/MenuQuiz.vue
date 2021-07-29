@@ -9,7 +9,7 @@
       ></v-progress-circular>
     </div>
     <v-navigation-drawer
-      v-model="controle"
+      v-model="controle_aux"
       color="grey lighten-2"
       width="300"
       app
@@ -28,6 +28,7 @@
               v-bind:key="n"
               >{{ n }}</v-btn
             >
+            
           </div>
 
           <v-dialog v-model="success" max-width="290" persistent>
@@ -117,7 +118,8 @@ export default {
     erro: false,
     success: false,
     text_erro: "",
-    questions_load: false
+    questions_load: false,
+    controle_aux: false
   }),
   props: {
     controle: {
@@ -133,6 +135,17 @@ export default {
       default: null,
     },
   },
+  created(){
+    this.controle_aux = this.controle;
+  },
+  watch: {
+    controle_aux(newValue, oldValue) {
+      this.$emit("toggleMenu",newValue)
+    },
+    controle(){
+      this.controle_aux = this.controle
+    }
+  },
   methods: {
     ...mapActions(["addResponseQuiz"]),
     question_open(n) {
@@ -142,7 +155,7 @@ export default {
       }
     },
     voltar_disciplina() {
-      this.$router.push(`/aluno/disciplina/${this.info_quiz.disciplinaId}`);
+      this.$router.push({name:'quiz-disciplinas-aluno',params:{disciplinaId: this.info_quiz.disciplinaId}});
     },
     ifResponse(questaoNum) {
       const enqueteId = this.$route.params.quizid;

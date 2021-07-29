@@ -29,14 +29,18 @@
               <b><v-icon left>mdi-tag-multiple</v-icon> Código:</b>
               {{ quiz.enqueteId }}
             </div>
+            <div class="mb-4" v-if="quiz.respondido">
+              <b><v-icon left>mdi-graph</v-icon> Nota:</b>
+              {{ quiz.nota }}
+            </div>
           </v-card-text>
 
           <v-card-actions class="pb-4">
             <v-btn
-              color="blue darken-2"
-              dark
+              color="blue darken-2 white--text"
               block
-              @click="$router.push(`/aluno/disciplinas/${disciplina.id}`)"
+              :disabled="quiz.respondido"
+              @click="$router.push(`/quiz/${quiz.enqueteId}/question/1`)"
             >
               <v-icon left>mdi-login-variant</v-icon> ENTRAR
             </v-btn>

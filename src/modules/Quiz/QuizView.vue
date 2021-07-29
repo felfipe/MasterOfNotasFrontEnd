@@ -8,7 +8,7 @@
       indeterminate
       ></v-progress-circular>
     </div>
-    <MenuQuiz v-if="questions_load" :controle="drawer" :num_question=quiz.quantidade :info_quiz=quiz></MenuQuiz>
+    <MenuQuiz v-if="questions_load" :controle="drawer" @toggleMenu="drawer = $event" :num_question=quiz.quantidade :info_quiz=quiz></MenuQuiz>
     <v-app-bar color="blue darken-2" absolute>
       <v-app-bar-nav-icon
         color="white"
