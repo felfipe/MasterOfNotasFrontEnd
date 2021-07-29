@@ -7,7 +7,7 @@
         class="btn-menu"
         v-for="(item, i) in items"
         :key="i"
-        @click.native="navigate({ name: item.link })"
+        @click="$router.push(item.link)"
       >
         <v-list-item-icon class="icon-btn-list-menu">
           <v-icon size="1rem" v-text="item.icon"></v-icon>
@@ -42,11 +42,7 @@
 export default {
   data: () => ({
     selectedItem: 0,
-    items: [
-      { title: "Disciplinas", icon: "mdi-paperclip", link: "home" },
-      { title: "Questões", icon: "mdi-help", link: "quiz-menu" },
-      { title: "Perfil", icon: "mdi-clipboard-account", link: "perfil" },
-    ],
+    items: [],
   }),
   methods: {
     navigate(to) {
@@ -57,6 +53,23 @@ export default {
       localStorage.removeItem("user");
       this.navigate({ name: "login" });
     },
+  },
+  async created() {
+    let dadosUser = JSON.parse(localStorage.getItem("user")) || [];
+    this.tipoAluno = dadosUser.tipo;
+    if(dadosUser.tipo === 'ALUNO'){
+      this.items = [
+        { title: "Disciplinas", icon: "mdi-paperclip", link: "/aluno/disciplinas" },
+        { title: "Perfil", icon: "mdi-clipboard-account", link: "/perfil" },
+      ];
+    }
+    else{
+      this.items = [
+        { title: "Disciplinas", icon: "mdi-paperclip", link: "/" },
+        { title: "Questionários", icon: "mdi-help", link: "/quiz" },
+        { title: "Perfil", icon: "mdi-clipboard-account", link: "/perfil" },
+      ];
+    }
   },
 };
 </script>

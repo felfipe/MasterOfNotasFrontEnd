@@ -5,8 +5,8 @@
           <span><v-icon large slot="prepend" color="grey"> mdi-account </v-icon></span>
       </v-list-item-avatar>
       <v-list-item-content>
-        <v-list-item-title>{{name}}</v-list-item-title>
-        <v-list-item-subtitle>{{type}}</v-list-item-subtitle>
+        <v-list-item-title>{{dadosUser.nome}}</v-list-item-title>
+        <v-list-item-subtitle>{{dadosUser.tipo}}</v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
     <v-divider></v-divider>
@@ -25,7 +25,7 @@
             <v-text-field label="E-mail" :value="email" type="email" :rules="rules">
               <v-icon slot="prepend" color="grey"> @ </v-icon>
             </v-text-field>
-            <v-text-field label="Nova Senha" type="password" :rules="rules">
+            <!-- <v-text-field label="Nova Senha" type="password" :rules="rules">
               <v-icon slot="prepend" color="grey">mdi-key</v-icon>
             </v-text-field>
             <v-text-field
@@ -34,15 +34,15 @@
               :rules="rules"
             >
               <v-icon slot="prepend" color="grey">mdi-key</v-icon>
-            </v-text-field>
-            <v-btn
+            </v-text-field> -->
+            <!-- <v-btn
               color="#00C853"
               class="white--text"
               block
               @click="addUpdatePerfil()"
             >
               Salvar
-            </v-btn>
+            </v-btn> -->
           </form>
         </v-col>
       </v-row>
@@ -54,10 +54,11 @@
 export default {
   data() {
     return {
-      name: "Joao da silva",
-      type: "Aluno",
-      email: "teste@gamil.com",
+      dadosUser: null
     };
+  },
+  async created() {
+    this.dadosUser = JSON.parse(localStorage.getItem("user")) || [];
   },
 };
 </script>
