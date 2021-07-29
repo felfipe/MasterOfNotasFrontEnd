@@ -90,6 +90,6 @@ export default {
   padding-left: 0 !important;
 }
 .card-dis-quiz{
-  border-top: 4px solid #0038a8;
+  border-top: 4px solid #0038a8 !important;
 }
 </style>
