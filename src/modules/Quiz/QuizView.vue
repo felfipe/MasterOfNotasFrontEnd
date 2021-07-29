@@ -57,7 +57,7 @@ export default {
       {
         text: "Dashboard",
         disabled: false,
-        href: "/",
+        href: "/aluno/disciplinas",
       },
       {
         text: this.quiz.disciplina.nome,

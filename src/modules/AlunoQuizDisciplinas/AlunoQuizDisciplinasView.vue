@@ -1,8 +1,9 @@
 <template>
   <div>
+    <v-breadcrumbs class="breadcrumbs-quiz" :items="items"></v-breadcrumbs>
     <v-row>
       <v-col cols="12">
-        <v-card class="mx-auto">
+        <v-card class="mx-auto card-dis-quiz">
           <v-card-title> {{discipline.nome}}</v-card-title>
           <v-card-text class="text--primary">
             <div class="mb-4">
@@ -37,7 +38,7 @@
 
           <v-card-actions class="pb-4">
             <v-btn
-              color="blue darken-2 white--text"
+              color="green darken-1 white--text"
               block
               :disabled="quiz.respondido"
               @click="$router.push(`/quiz/${quiz.enqueteId}/question/1`)"
@@ -56,7 +57,14 @@ export default {
   data: () => ({
     disciplinas: null,
     discipline: {},
-    quizes: []
+    quizes: [],
+    items: [
+      {
+        text: "Disciplinas",
+        disabled: false,
+        href: "/aluno/disciplinas",
+      },
+    ],
   }),
   computed: {
     ...mapState(['currentDiscipline'])
@@ -69,7 +77,19 @@ export default {
     this.discipline = this.disciplinas.find(d => d.id == this.$route.params.disciplinaId)
     let response = await this.getMyQuizesRequest()
     response = response.filter(res => +res.disciplina.disciplinaId == +this.discipline.id)
-    this.quizes = response
+    this.quizes = response;
+    this.items.push({
+        text: this.discipline.nome,
+        disabled: true,
+      });
   },
 };
 </script>
+<style>
+.breadcrumbs-quiz {
+  padding-left: 0 !important;
+}
+.card-dis-quiz{
+  border-top: 4px solid #0038a8;
+}
+</style>
