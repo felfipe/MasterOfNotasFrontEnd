@@ -80,10 +80,12 @@ export default {
     },
     async startQuizRequest({commit},{quizId}){
         const response = await services.startQuiz(quizId)
+        commit('professorToggleQuiz',quizId)
         return response.data
     },
     async finishQuizRequest({commit},{quizId}){
         const response = await services.finishQuiz(quizId)
+        commit('professorToggleQuiz',quizId)
         return response.data
     },
     async getMyQuizesRequest({commit}){

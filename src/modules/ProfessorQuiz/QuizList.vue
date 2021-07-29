@@ -17,7 +17,7 @@
                         :color="!item.ativo? 'success': 'error'"
                         @click="toggleQuiz(item.id, item.ativo)"
                     >
-                      {{!item.ativo? 'Iniciar Enquete': 'Parar Enquete'}}
+                      {{!item.ativo? 'Iniciar Enquete': 'Encerrar Quiz'}}
                     </v-btn>
                     <v-btn
                         class="discipline__action"
