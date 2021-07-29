@@ -30,4 +30,10 @@ export default {
     setQuizs(state,quizs){
         state.quizs = quizs
     },
+    setCurrentDiscipline(state,discipline){
+        state.currentDiscipline = discipline
+    },
+    setStudentDisciplines(state,disciplines){
+        state.studentDisciplines = disciplines
+    }
 }

@@ -83,7 +83,7 @@ import { mapActions, mapState } from 'vuex'
         this.$router.push(to)  
       },
       async toggleQuiz(id,ativo){
-         if (ativo) await this.startQuizRequest({quizId:id})
+         if (!ativo) await this.startQuizRequest({quizId:id})
          else await this.finishQuizRequest({quizId: id})
       }
     },

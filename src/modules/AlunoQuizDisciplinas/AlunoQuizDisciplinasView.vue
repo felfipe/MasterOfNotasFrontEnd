@@ -3,35 +3,31 @@
     <v-row>
       <v-col cols="12">
         <v-card class="mx-auto">
-          <v-card-title> asdasdasd</v-card-title>
+          <v-card-title> {{discipline.nome}}</v-card-title>
           <v-card-text class="text--primary">
             <div class="mb-4">
               <b><v-icon left>mdi-tag-multiple</v-icon> Código:</b>
-              asdasdasd
+              {{discipline.id}}
             </div>
             <div>
               <b><v-icon left>mdi-teach</v-icon> Professor(a):</b>
-              asdasdasd
+              {{discipline.professor}}
             </div>
           </v-card-text>
         </v-card>
       </v-col>
       <v-col
-        v-for="disciplina in disciplinas"
-        :key="disciplina.id"
+        v-for="quiz in quizes"
+        :key="quiz.id"
         cols="12"
         sm="12"
       >
         <v-card class="mx-auto">
-          <v-card-title> {{ disciplina.nome }}</v-card-title>
+          <v-card-title> {{ quiz.nome }}</v-card-title>
           <v-card-text class="text--primary">
             <div class="mb-4">
               <b><v-icon left>mdi-tag-multiple</v-icon> Código:</b>
-              {{ disciplina.id }}
-            </div>
-            <div>
-              <b><v-icon left>mdi-teach</v-icon> Professor(a):</b>
-              {{ disciplina.professor }}
+              {{ quiz.enqueteId }}
             </div>
           </v-card-text>
 
@@ -51,16 +47,25 @@
   </div>
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
   data: () => ({
     disciplinas: null,
+    discipline: {},
+    quizes: []
   }),
+  computed: {
+    ...mapState(['currentDiscipline'])
+  },
   methods: {
-    ...mapActions(["getDisciplinasMatriculadas"]),
+    ...mapActions(["getDisciplinasMatriculadas","getMyQuizesRequest"]),
   },
   async created() {
     this.disciplinas = await this.getDisciplinasMatriculadas();
+    this.discipline = this.disciplinas.find(d => d.id == this.$route.params.disciplinaId)
+    let response = await this.getMyQuizesRequest()
+    response = response.filter(res => +res.disciplina.disciplinaId == +this.discipline.id)
+    this.quizes = response
   },
 };
 </script>

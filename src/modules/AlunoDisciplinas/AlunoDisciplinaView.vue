@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row>
+    <v-row >
       <v-col v-for="disciplina in disciplinas" :key="disciplina.id" cols="12" sm="6">
         <v-card class="mx-auto">
           <v-card-title> {{disciplina.nome}}</v-card-title>
@@ -14,23 +14,33 @@
           </v-card-text>
 
           <v-card-actions class="pb-4">
-            <v-btn color="blue darken-2" dark block @click="$router.push(`/aluno/disciplinas/${disciplina.id}`);">
+            <v-btn color="blue darken-2" dark block @click="disciplineOpen(disciplina)">
               <v-icon left>mdi-login-variant</v-icon> ENTRAR
             </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
+      <v-col v-if="disciplinas.length == 0" >
+        <h2 style="width:100%;text-align:center">Você não possui disciplinas matriculadas</h2>
+        
+      </v-col>
     </v-row>
   </div>
 </template>
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapMutations } from 'vuex';
 export default {
   data: () => ({
-    disciplinas: null,
+    disciplinas: [],
   }),
   methods: {
-    ...mapActions(['getDisciplinasMatriculadas'])
+    ...mapActions(['getDisciplinasMatriculadas']),
+    ...mapMutations(['setCurrentDiscipline']),
+
+    disciplineOpen(disciplina){
+      this.setCurrentDiscipline(disciplina)
+      this.$router.push(`/aluno/disciplinas/${disciplina.id}`)
+    }
   },
   async created() {
     this.disciplinas = await this.getDisciplinasMatriculadas();

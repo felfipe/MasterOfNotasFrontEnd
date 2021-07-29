@@ -71,6 +71,7 @@ export default {
     },
     async getDisciplinasMatriculadas({commit}){
         const response = await services.getDisciplinasAluno()
+        commit('setStudentDisciplines', response.data)
         return response.data;
     },
     async removeQuizQuestionRequest({commit},{questionId,quizId}){
@@ -83,6 +84,10 @@ export default {
     },
     async finishQuizRequest({commit},{quizId}){
         const response = await services.finishQuiz(quizId)
+        return response.data
+    },
+    async getMyQuizesRequest({commit}){
+        const response = await services.getStudentQuizes()
         return response.data
     }
 
