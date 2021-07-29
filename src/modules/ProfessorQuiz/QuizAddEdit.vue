@@ -5,10 +5,6 @@
         </v-text-field>
         <v-text-field label="Quantidade de questões por aluno" v-model="quiz.amount" type="text">
         </v-text-field>
-        <v-checkbox
-            v-model="quiz.active"
-            :label="'Ativo'"
-        ></v-checkbox>
         <v-select
             :items="disciplines"
             item-text="nome"
