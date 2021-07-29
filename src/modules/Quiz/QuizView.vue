@@ -57,12 +57,12 @@ export default {
       {
         text: "Dashboard",
         disabled: false,
-        href: "/",
+        href: "/aluno/disciplinas",
       },
       {
         text: this.quiz.disciplina.nome,
         disabled: false,
-        href: `/disciplina/${this.quiz.disciplina.id}`,
+        href: `/aluno/disciplinas/${this.quiz.disciplina.id}`,
       },
       {
         text: this.quiz.nome,
