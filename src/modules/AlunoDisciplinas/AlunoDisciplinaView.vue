@@ -6,7 +6,7 @@
           <v-card-title> {{disciplina.nome}}</v-card-title>
           <v-card-text class="text--primary">
             <div class="mb-4">
-              <b><v-icon left>mdi-tag-multiple</v-icon> Código:</b> {{disciplina.id}}
+              <b><v-icon left>mdi-tag-multiple</v-icon> Código:</b> {{disciplina.sigla}}
             </div>
             <div>
               <b><v-icon left>mdi-teach</v-icon> Professor(a):</b> {{disciplina.professor}}
