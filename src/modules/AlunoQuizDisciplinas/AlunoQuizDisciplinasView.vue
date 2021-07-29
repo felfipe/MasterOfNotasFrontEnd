@@ -36,7 +36,7 @@
               color="blue darken-2"
               dark
               block
-              @click="$router.push(`/aluno/disciplinas/${disciplina.id}`)"
+              @click="$router.push(`/quiz/${quiz.enqueteId}/question/1`)"
             >
               <v-icon left>mdi-login-variant</v-icon> ENTRAR
             </v-btn>
