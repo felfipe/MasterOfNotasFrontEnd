@@ -35,5 +35,11 @@ export default {
     },
     setStudentDisciplines(state,disciplines){
         state.studentDisciplines = disciplines
+    },
+    professorToggleQuiz(state, quizId){
+        let quizs = [...state.quizs]
+        const index = quizs.findIndex(q => q.id == quizId)
+        quizs[index].ativo = !quizs[index].ativo
+        state.quizs = quizs
     }
 }
