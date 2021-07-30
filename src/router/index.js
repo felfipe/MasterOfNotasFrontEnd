@@ -13,6 +13,7 @@ import QuizAddEdit from '@/modules/ProfessorQuiz/QuizAddEdit.vue'
 import QuizAddQuestion from '@/modules/ProfessorQuiz/QuizAddQuestion.vue'
 import QuizList from '@/modules/ProfessorQuiz/QuizList.vue'
 import QuizQuestions from '@/modules/ProfessorQuiz/QuizQuestions.vue'
+import GradeList from '@/modules/ProfessorQuiz/GradeList.vue'
 
 import AlunoDisciplinas from '@/modules/AlunoDisciplinas/AlunoDisciplinaView.vue'
 import AlunoQuizDisciplinasView from '@/modules/AlunoQuizDisciplinas/AlunoQuizDisciplinasView.vue'
@@ -75,7 +76,11 @@ const routes = [
         name: 'questions-quiz-professor',
         component: QuizQuestions
       },
-
+      {
+        path: 'grade-quiz/:id',
+        name: 'grade-quiz-professor',
+        component: GradeList
+      },
       {
         path: 'question-quiz-professor/:id',
         name: 'question-quiz-professor',

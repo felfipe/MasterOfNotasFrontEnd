@@ -36,11 +36,12 @@
             </div>
           </v-card-text>
 
-          <v-card-actions class="pb-4">
+          <v-card-actions class="pb-4" v-if="!quiz.respondido">
             <v-btn
               color="green darken-1 white--text"
               block
-              :disabled="quiz.respondido"
+              
+              :disabled="!quiz.ativo"
               @click="$router.push(`/quiz/${quiz.enqueteId}/question/1`)"
             >
               <v-icon left>mdi-login-variant</v-icon> ENTRAR
